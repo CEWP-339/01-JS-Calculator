@@ -2,19 +2,52 @@ const defaultResult = 0;
 
 let currentResult = defaultResult;
 
-// currentResult =  ( currentResult + 10 ) * 3 / 2 - 1; 
-
-//let calculationDescription = "(" + defaultResult + " + 10 ) * 3 / 2 - 1";
-
-// let calculationDescription = `( ${defaultResult} + 10 ) * 3 / 2 - 1`;  //PEMDAS  
-
-function add() {
-    const calculationDescription = `${currentResult} + ${userInput.value}`;
-    currentResult = currentResult + parseInt(userInput.value);
+//Generates and prints the calculation log on the screen
+function createAndWriteOutput (operator, resultBeforeCalc, calcNumber) {
+    const calculationDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
     outputResult(currentResult, calculationDescription);
 }
 
-// currentResult = add(24, 56);
+/*
+Description: 
+Params: 
+Output:
+*/
+function getUserInput () {
+    return parseInt(usrInput.value);
+}
+
+function add() {
+    const enteredNumber = getUserInput();
+    const initialResult = currentResult;
+    currentResult = currentResult + enteredNumber;
+    createAndWriteOutput('+', initialResult, enteredNumber);
+}
+
+function subtract() {
+    const enteredNumber = getUserInput();
+    const initialResult = currentResult;
+    currentResult = currentResult - enteredNumber;
+    createAndWriteOutput('-', initialResult, enteredNumber);
+}
+
+function multiply() {
+    const enteredNumber = getUserInput();
+    const initialResult = currentResult;
+    currentResult = currentResult * enteredNumber;
+    createAndWriteOutput('*', initialResult, enteredNumber);
+}
+
+function divide() {
+    const enteredNumber = getUserInput();
+    const initialResult = currentResult;
+    currentResult = currentResult / enteredNumber;
+    createAndWriteOutput('/', initialResult, enteredNumber);
+}
 
 addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
+multiplyBtn.addEventListener('click', multiply);
+divideBtn.addEventListener('click', divide);
+
 
