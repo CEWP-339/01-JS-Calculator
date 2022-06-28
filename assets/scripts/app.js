@@ -2,6 +2,8 @@ const defaultResult = 0;
 
 let currentResult = defaultResult;
 
+let logEntries = [];
+
 //Generates and prints the calculation log on the screen
 function createAndWriteOutput (operator, resultBeforeCalc, calcNumber) {
     const calculationDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
@@ -20,28 +22,28 @@ function getUserInput () {
 function add() {
     const enteredNumber = getUserInput();
     const initialResult = currentResult;
-    currentResult = currentResult + enteredNumber;
+    currentResult += enteredNumber;
     createAndWriteOutput('+', initialResult, enteredNumber);
 }
 
 function subtract() {
     const enteredNumber = getUserInput();
     const initialResult = currentResult;
-    currentResult = currentResult - enteredNumber;
+    currentResult -= enteredNumber;
     createAndWriteOutput('-', initialResult, enteredNumber);
 }
 
 function multiply() {
     const enteredNumber = getUserInput();
     const initialResult = currentResult;
-    currentResult = currentResult * enteredNumber;
+    currentResult *= enteredNumber;
     createAndWriteOutput('*', initialResult, enteredNumber);
 }
 
 function divide() {
     const enteredNumber = getUserInput();
     const initialResult = currentResult;
-    currentResult = currentResult / enteredNumber;
+    currentResult /= enteredNumber;
     createAndWriteOutput('/', initialResult, enteredNumber);
 }
 
