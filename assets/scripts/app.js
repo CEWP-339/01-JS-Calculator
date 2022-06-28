@@ -19,19 +19,23 @@ function getUserInput () {
     return parseInt(usrInput.value);
 }
 
+function writeToLog (operator, prevResult, userInput, finalResult) {
+    const logEntry = {
+        operator,
+        prevResult,
+        userInput,
+        result: finalResult
+    };
+    logEntries.push(logEntry);
+    console.log(logEntries);
+}
+
 function add() {
     const enteredNumber = getUserInput();
     const initialResult = currentResult;
     currentResult += enteredNumber;
     createAndWriteOutput('+', initialResult, enteredNumber);
-    const logEntry = {
-        operator: '+',
-        prevResult: initialResult,
-        userInput: enteredNumber,
-        result: currentResult
-    };
-    logEntries.push(logEntry);
-    console.log(logEntries);
+    writeToLog('+', initialResult, enteredNumber, currentResult);
 }
 
 function subtract() {
@@ -39,9 +43,7 @@ function subtract() {
     const initialResult = currentResult;
     currentResult -= enteredNumber;
     createAndWriteOutput('-', initialResult, enteredNumber);
-    logEntries.push(enteredNumber);
-    logEntries.push('-');
-    console.log(logEntries[3]);
+    writeToLog('-', initialResult, enteredNumber, currentResult);
 }
 
 function multiply() {
@@ -49,9 +51,7 @@ function multiply() {
     const initialResult = currentResult;
     currentResult *= enteredNumber;
     createAndWriteOutput('*', initialResult, enteredNumber);
-    logEntries.push(enteredNumber);
-    logEntries.push('*');
-    console.log(logEntries);
+    writeToLog('*', initialResult, enteredNumber, currentResult);
 }
 
 function divide() {
@@ -59,9 +59,7 @@ function divide() {
     const initialResult = currentResult;
     currentResult /= enteredNumber;
     createAndWriteOutput('/', initialResult, enteredNumber);
-    logEntries.push(enteredNumber);
-    logEntries.push('/');
-    console.log(logEntries);
+    writeToLog('/', initialResult, enteredNumber, currentResult);
 }
 
 addBtn.addEventListener('click', add);
