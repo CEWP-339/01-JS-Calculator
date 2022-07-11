@@ -30,36 +30,47 @@ function writeToLog (operator, prevResult, userInput, finalResult) {
     console.log(logEntries);
 }
 
-function add() {
+function calculateResult (operator) {
+
     const enteredNumber = getUserInput();
+
+    if (operator !== '+' && operator !== '-' && operator !== '*' && operator !== '/' || !enteredNumber) {
+        alert('Invalid Operation!');
+        return;
+    }
+
     const initialResult = currentResult;
-    currentResult += enteredNumber;
-    createAndWriteOutput('+', initialResult, enteredNumber);
-    writeToLog('+', initialResult, enteredNumber, currentResult);
+
+    if (operator === '+') {
+        currentResult += enteredNumber;
+    } else if (operator === '-')  {
+        currentResult -= enteredNumber;
+    } else if (operator === '*')  {
+        currentResult *= enteredNumber;
+    } else if (operator === '/')  {
+        currentResult /= enteredNumber;
+    } 
+
+    createAndWriteOutput(operator, initialResult, enteredNumber);
+    writeToLog(operator, initialResult, enteredNumber, currentResult);
+
+}
+
+
+function add() {
+    calculateResult('+');
 }
 
 function subtract() {
-    const enteredNumber = getUserInput();
-    const initialResult = currentResult;
-    currentResult -= enteredNumber;
-    createAndWriteOutput('-', initialResult, enteredNumber);
-    writeToLog('-', initialResult, enteredNumber, currentResult);
+    calculateResult('-');
 }
 
 function multiply() {
-    const enteredNumber = getUserInput();
-    const initialResult = currentResult;
-    currentResult *= enteredNumber;
-    createAndWriteOutput('*', initialResult, enteredNumber);
-    writeToLog('*', initialResult, enteredNumber, currentResult);
+    calculateResult('*');
 }
 
 function divide() {
-    const enteredNumber = getUserInput();
-    const initialResult = currentResult;
-    currentResult /= enteredNumber;
-    createAndWriteOutput('/', initialResult, enteredNumber);
-    writeToLog('/', initialResult, enteredNumber, currentResult);
+    calculateResult('/');
 }
 
 addBtn.addEventListener('click', add);
